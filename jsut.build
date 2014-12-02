@@ -1,0 +1,14 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+	<PropertyGroup>
+		<SourcePath>.</SourcePath>  
+		<BuildTools>C:\TeamCity\buildAgent\tools</BuildTools>
+		<SolutionFile>$(SourcePath)\jsut-demo.sln</SolutionFile>  
+		<Chutzpah>$(BuildTools)\chutzpah\chutzpah.console.exe</Chutzpah>
+		<JsTestsPath>.\examples\tests</JsTestsPath>
+	</PropertyGroup>
+
+	<Target Name="jstests">
+		<MSBuild Projects="$(SolutionFile)" Properties="Configuration=Debug;" Targets="Clean;Build" />
+		<Exec Command="$(Chutzpah) /path $(JsTestsPath) /coverage /teamcity /timeoutMilliseconds 15000"/>
+	</Target>
+</Project>
