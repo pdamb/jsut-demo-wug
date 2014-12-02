@@ -2,14 +2,19 @@
 /// <reference path="../lib/jquery.mockjax.js" />
 /// <reference path="../js/ex2.AsyncChat.js" />
 
+$.mockjax({
+    url: '/services/ChatService.asmx/GetBlacklist',
+    responseTime: 10,
+    responseText: { d: ["noob"] }
+});
+
 asyncTest('Zprava "jsi noob" neni validni.', function(assert) {
-    expect(1);
     var zprava = 'jsi noob';
     var chat = new ns.AsyncChat();
     chat.validate(zprava, function(vysledek) {
         assert.equal(vysledek, false);
+        QUnit.start();
     });
-    QUnit.start();
 });
 
 asyncTest('Zprava "jsi noob" neni validni.', function (assert) {
