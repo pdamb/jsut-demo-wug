@@ -1,0 +1,11 @@
+Artifacts:
+coverage/index.html => coverage.zip
+
+Chutzpah cmd:
+%teamcity.agent.tools.dir%/chutzpah/chutzpah.console.exe
+/path "examples\tests" /failOnError /coverage /coverageExcludes "*\lib\*.*"
+
+Copy cmd:
+mkdir coverage
+copy "_Chutzpah.coverage.html" "coverage\index.html"
+copy "_Chutzpah.coverage.json" "coverage\_Chutzpah.coverage.json"
